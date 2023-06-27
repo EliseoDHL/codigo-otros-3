@@ -8,8 +8,8 @@ const productos = [
   {nombre: "Zapato rojo", tipo: "zapato", color: "rojo", img: "./zapato-rojo.jpg"}
 ]
 
-const li = document.getElementsByName("lista-de-productos")
-const $i = document.querySelector('.input');
+const li = document.getElementsById("lista-de-productos"); //Se tiene que llamar al archivo por ID ya que en el HTML esta nombrado por ID
+const $i = document.getElementsById('input'); //Se cambia el query selector por un getElement y en el html se agrego el Id de input
 
 for (let i = 0; i < productos.length; i++) {
   var d = document.createElement("div")
@@ -25,22 +25,24 @@ for (let i = 0; i < productos.length; i++) {
   d.appendChild(ti)
   d.appendChild(imagen)
 
-  li.appendChild(d)
+  li.appendChild(d);
 }
 
-displayProductos(productos)
-const botonDeFiltro = document.querySelector("button");
+//displayProductos(productos)
 
-botonDeFiltro.onclick = function() {
+const botonDeFiltro = document.getElementById("button"); //Se manda a llamar al boton pero lo haremos con un id, asi que cambiaremos el query selector por un get element
+
+
+botonDeFiltro.onclick = function() { //Funcion que permite la activacion del boton con un click
   while (li.firstChild) {
     li.removeChild(li.firstChild);
   }
 
-  const texto = $i.value;
+  const texto = $i.value; //El valor del input es guardado en esta constante y luego se muestra abajo con un console.log
   console.log(texto);
-  const productosFiltrados = filtrado(productos, texto );
+  const productosFiltrados = filtrado(productos, texto ); 
 
-  for (let i = 0; i < productosFiltrados.length; i++) {
+  for (let i = 0; i < productosFiltrados.length; i++) { //Aqui es donde se va a crear los div, parrafos e imagenes, a la imagen se le anexa un atributo src que es de donde sacara la image
     var d = document.createElement("div")
     d.classList.add("producto")
   
